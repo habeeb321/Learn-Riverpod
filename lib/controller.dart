@@ -1,5 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 
-final provider = Provider<String>((ref) {
+final readOnly = Provider<String>((ref) {
   return 'This is for just read-only value';
+});
+
+final basicMutableState = StateProvider<int>((ref) {
+  return 0;
 });

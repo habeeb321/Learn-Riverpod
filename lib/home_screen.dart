@@ -7,10 +7,28 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final providerData = ref.watch(provider);
+    final providerData = ref.watch(readOnly);
+    final stateProvider = ref.watch(basicMutableState);
+    final stateProviderController = ref.read(basicMutableState.notifier);
     return Scaffold(
-      body: Center(
-        child: Text(providerData),
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(providerData),
+              Column(
+                children: [
+                  Text(stateProvider.toString()),
+                  ElevatedButton(
+                    onPressed: () => stateProviderController.state++,
+                    child: Text('Increment'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
