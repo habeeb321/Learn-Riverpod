@@ -8,3 +8,8 @@ final readOnly = Provider<String>((ref) {
 final basicMutableState = StateProvider<int>((ref) {
   return 0;
 });
+
+final asyncDataState = FutureProvider<String>((ref) async {
+  await Future.delayed(Duration(seconds: 2));
+  return 'Imaging this is result from API';
+});

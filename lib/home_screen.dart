@@ -10,6 +10,7 @@ class HomeScreen extends ConsumerWidget {
     final providerData = ref.watch(readOnly);
     final stateProvider = ref.watch(basicMutableState);
     final stateProviderController = ref.read(basicMutableState.notifier);
+    final futureProvider = ref.watch(asyncDataState);
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -25,6 +26,11 @@ class HomeScreen extends ConsumerWidget {
                     child: Text('Increment'),
                   ),
                 ],
+              ),
+              futureProvider.when(
+                data: (data) => Text(data),
+                error: (error, stackTrace) => Text('Error: $error'),
+                loading: () => CircularProgressIndicator(),
               ),
             ],
           ),
