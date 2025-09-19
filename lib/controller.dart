@@ -13,3 +13,19 @@ final asyncDataState = FutureProvider<String>((ref) async {
   await Future.delayed(Duration(seconds: 2));
   return 'Imagine this is a result from API';
 });
+
+class Counter extends StateNotifier<int> {
+  Counter() : super(0);
+
+  int increment() {
+    return state++;
+  }
+
+  int decrement() {
+    return state--;
+  }
+}
+
+final counterNotifierProvider = StateNotifierProvider<Counter, int>((ref) {
+  return Counter();
+});

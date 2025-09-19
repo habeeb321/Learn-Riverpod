@@ -11,6 +11,9 @@ class HomeScreen extends ConsumerWidget {
     final stateProvider = ref.watch(basicMutableState);
     final stateProviderController = ref.read(basicMutableState.notifier);
     final futureProvider = ref.watch(asyncDataState);
+    final stateNotifierProvider = ref.watch(counterNotifierProvider);
+    final stateNotifierController = ref.read(counterNotifierProvider.notifier);
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -31,6 +34,20 @@ class HomeScreen extends ConsumerWidget {
                 data: (data) => Text(data),
                 error: (error, stackTrace) => Text('Error: $error'),
                 loading: () => CircularProgressIndicator(),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => stateNotifierController.decrement(),
+                    child: Text('Decrement'),
+                  ),
+                  Text(stateNotifierProvider.toString()),
+                  ElevatedButton(
+                    onPressed: () => stateNotifierController.increment(),
+                    child: Text('Increment'),
+                  ),
+                ],
               ),
             ],
           ),
