@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 
 final readOnly = Provider<String>((ref) {
-  return 'This is for just read-only value';
+  return 'This is just read-only value';
 });
 
 final basicMutableState = StateProvider<int>((ref) {
@@ -11,5 +11,5 @@ final basicMutableState = StateProvider<int>((ref) {
 
 final asyncDataState = FutureProvider<String>((ref) async {
   await Future.delayed(Duration(seconds: 2));
-  return 'Imaging this is result from API';
+  return 'Imagine this is a result from API';
 });
